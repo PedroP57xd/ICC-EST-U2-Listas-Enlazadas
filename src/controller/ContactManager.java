@@ -1,8 +1,8 @@
-package controller;
+    package controller;
 
 import java.util.LinkedList;
 
-class ContactManager {
+public class ContactManager {
     private LinkedList<Contact> contacts = new LinkedList<>();
 
     public void addContact(Contact contact) {
