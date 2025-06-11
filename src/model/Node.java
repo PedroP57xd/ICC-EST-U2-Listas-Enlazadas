@@ -1,19 +1,19 @@
 package model;
 
 public class Node {
-    private Contacto value;
+    private Contact value;
     private Node next;
 
-    public Node(Contacto value) {
+    public Node(Contact value) {
         this.value = value;
         this.next = null;
     }
 
-    public Contacto getValue() {
+    public Contact getValue() {
         return value;
     }
 
-    public void setValue(Contacto value) {
+    public void setValue(Contact value) {
         this.value = value;
     }
 

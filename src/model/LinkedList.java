@@ -9,7 +9,7 @@ public class LinkedList {
         size = 0;
     }
 
-    public void appendToTail(Contacto value) {
+    public void appendToTail(Contact value) {
         Node newNode = new Node(value);
         if (head == null) {
             head = newNode;
@@ -23,10 +23,10 @@ public class LinkedList {
         size++;
     }
 
-    public Contacto findByValue(String name) {
+    public Contact findByValue(String name) {
         Node current = head;
         while (current != null) {
-            if (current.getValue().getNombre().equalsIgnoreCase(name)) {
+            if (current.getValue().getName().equalsIgnoreCase(name)) {
                 return current.getValue();
             }
             current = current.getNext();
@@ -37,7 +37,7 @@ public class LinkedList {
     public boolean deleteByValue(String name) {
         if (head == null) return false;
 
-        if (head.getValue().getNombre().equalsIgnoreCase(name)) {
+        if (head.getValue().getName().equalsIgnoreCase(name)) {
             head = head.getNext();
             size--;
             return true;
@@ -45,7 +45,7 @@ public class LinkedList {
 
         Node current = head;
         while (current.getNext() != null) {
-            if (current.getNext().getValue().getNombre().equalsIgnoreCase(name)) {
+            if (current.getNext().getValue().getName().equalsIgnoreCase(name)) {
                 current.setNext(current.getNext().getNext());
                 size--;
                 return true;
