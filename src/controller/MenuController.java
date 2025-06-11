@@ -5,6 +5,7 @@ import view.ConsoleView;
 public class MenuController {
     private ContactManager contactManager = new ContactManager();
     private ConsoleView consoleView = new ConsoleView();
+
     
 
     public MenuController(ContactManager contactManager, ConsoleView consoleView) {
@@ -12,24 +13,25 @@ public class MenuController {
         this.consoleView = consoleView;
     }
 
-
-    public MenuController() {
-    }
-
-
     public void showMenu() {
         while (true) {
             consoleView.displayMenu();
             String choice = consoleView.getInput("\n Selecciona una opción: ");
             switch (choice) {
                 case "1":
-                    String name = consoleView.getInput("\n Nombre del contacto: ");
+                    String nam = consoleView.getInput("Nombre del contacto: ");
+                    String name = nam.equalsIgnoreCase(choice) ? "" : nam;
+                    if (name.isEmpty()|| name.equalsIgnoreCase("null")) {
+                        consoleView.showMessage("\n El nombre no puede estar vacío.");
+                        continue;
+                    }
                     String phone = consoleView.getInput("Teléfono del contacto: ");
                     contactManager.addContact(new Contact(name, phone));
                     consoleView.showMessage("\n Contacto agregado.");
                     break;
                 case "2":
-                    name = consoleView.getInput("\n Nombre a buscar: ");
+                    nam = consoleView.getInput("\nNombre a buscar: ");
+                    name = nam.equalsIgnoreCase(choice) ? "" : nam;
                     Contact found = contactManager.findContactByName(name);
                     consoleView.showMessage(found != null ? found.toString() : "\n Contacto no encontrado.");
                     break;
@@ -39,7 +41,6 @@ public class MenuController {
                     consoleView.showMessage("\n Contacto eliminado.");
                     break;
                 case "4":
-                    System.out.println();
                     contactManager.printList();
                     break;
                 case "5":
@@ -48,6 +49,6 @@ public class MenuController {
                 default:
                     consoleView.showMessage("\n Opción inválida.");
             }
-        }
-    }
+        }
+    }
 }
